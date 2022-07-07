@@ -1,22 +1,36 @@
-import { render, screen } from '@testing-library/react';
+import { render, screen, waitFor } from '@testing-library/react';
 import ProductList from '../pages/index';
+import { makeServer } from '../miragejs/server';
 
 const renderProduct = () => {
   render(<ProductList />);
 };
 
 describe('ProductList', () => {
+  let server;
+
+  beforeEach(() => {
+    server = makeServer({ environment: 'test' });
+  });
+
+  afterEach(() => {
+    server.shutdown();
+  });
+
   it('should render', () => {
     renderProduct();
 
     expect(screen.getByTestId('product-list')).toBeInTheDocument();
   });
 
-  // FIXME
-  fit('should render the ProductCard component 10 times', () => {
+  it('should render the ProductCard component 10 times', async () => {
+    server.createList('product', 10);
+
     renderProduct();
 
-    expect(screen.getAllByTestId('product-card')).toHaveLength(10);
+    await waitFor(() => {
+      expect(screen.getAllByTestId('product-card')).toHaveLength(10);
+    });
   });
 
   it.todo('should render the no products message');

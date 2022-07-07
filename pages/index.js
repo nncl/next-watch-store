@@ -10,7 +10,9 @@ export default function Home() {
   useEffect(() => {
     axios
       .get(`/api/products`)
-      .then((res) => setProducts(res.data.products))
+      .then((res) => {
+        setProducts(res.data.products);
+      })
       .catch(() => setError(true));
   }, []);
 
