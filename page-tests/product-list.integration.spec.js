@@ -1,14 +1,24 @@
 import { render, screen } from '@testing-library/react';
 import ProductList from '../pages/index';
 
+const renderProduct = () => {
+  render(<ProductList />);
+};
+
 describe('ProductList', () => {
   it('should render', () => {
-    render(<ProductList />);
+    renderProduct();
 
     expect(screen.getByTestId('product-list')).toBeInTheDocument();
   });
 
-  it.todo('should render the ProductCard component 10 times');
+  // FIXME
+  fit('should render the ProductCard component 10 times', () => {
+    renderProduct();
+
+    expect(screen.getAllByTestId('product-card')).toHaveLength(10);
+  });
+
   it.todo('should render the no products message');
   it.todo('should render the Search component');
   it.todo('should filter the product list when a search is performed');
