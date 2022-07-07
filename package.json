@@ -24,6 +24,7 @@
     "tailwindcss": "^1.7.4"
   },
   "devDependencies": {
+    "@faker-js/faker": "^7.3.0",
     "@testing-library/dom": "^8.14.0",
     "@testing-library/jest-dom": "^5.16.4",
     "@testing-library/react": "^13.3.0",
@@ -33,6 +34,7 @@
     "eslint-config-next": "12.1.6",
     "jest": "27.4.7",
     "jest-dom": "^4.0.0",
+    "miragejs": "^0.1.45",
     "postcss-flexbugs-fixes": "4.2.1",
     "postcss-preset-env": "^6.7.0",
     "prettier": "^2.7.1"
