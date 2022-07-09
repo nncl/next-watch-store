@@ -1,20 +1,9 @@
 import ProductCard from '../components/product-card';
 import Search from '../components/search';
-import { useEffect, useState } from 'react';
-import axios from 'axios';
+import { useFetchProducts } from '../hooks/use-fetch-products';
 
 export default function Home() {
-  const [products, setProducts] = useState([]);
-  const [error, setError] = useState(false);
-
-  useEffect(() => {
-    axios
-      .get(`/api/products`)
-      .then((res) => {
-        setProducts(res.data.products);
-      })
-      .catch(() => setError(true));
-  }, []);
+  const { products } = useFetchProducts();
 
   return (
     <main data-testid="product-list" className="my-8">
