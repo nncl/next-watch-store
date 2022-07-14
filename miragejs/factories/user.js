@@ -16,7 +16,7 @@ export default {
       return faker.fake('{{name.findName}}');
     },
     mobile() {
-      return faker.fake('{{phone.phoneNumber}}');
+      return faker.fake('{{phone.number}}');
     },
     afterCreate(user, server) {
       const messages = server.createList('message', randomNumber(10), { user });
