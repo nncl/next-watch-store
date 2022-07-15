@@ -8,6 +8,16 @@ export default function Search({ doSearch }) {
     doSearch(term);
   };
 
+  const searchHandler = (ev) => {
+    const { value } = ev.target;
+
+    setTerm(value);
+
+    if (!value) {
+      doSearch('');
+    }
+  };
+
   return (
     <form onSubmit={search} name="search-form" className="relative mt-6 max-w-lg mx-auto">
       <span className="absolute inset-y-0 left-0 pl-3 flex items-center">
@@ -24,7 +34,7 @@ export default function Search({ doSearch }) {
 
       <input
         value={term}
-        onChange={(e) => setTerm(e.target.value)}
+        onInput={searchHandler}
         className="w-full border rounded-md pl-10 pr-4 py-2 focus:border-blue-500 focus:outline-none focus:shadow-outline"
         type="search"
         placeholder="Search"
