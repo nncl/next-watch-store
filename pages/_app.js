@@ -1,13 +1,16 @@
+/* istanbul ignore file */
 import '../styles/globals.css';
 
 import { makeServer } from '../miragejs/server';
 import Cart from '../components/cart';
 
+/* istanbul ignore next */
 if (process.env.NODE_ENV === 'development') {
   makeServer();
 }
 
 function MyApp({ Component, pageProps }) {
+  /* istanbul ignore next */
   return (
     <div className="bg-white">
       <header>
