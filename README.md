@@ -1,7 +1,5 @@
 This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
 
-STARTING https://curso.javascript.tv.br/lecture/testar-aplicacoes-javascript-modulo3-store
-
 ## Getting Started
 
 First, run the development server:
