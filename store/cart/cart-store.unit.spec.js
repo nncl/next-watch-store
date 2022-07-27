@@ -4,13 +4,16 @@ import { makeServer } from '../../miragejs/server';
 
 describe('Cart Store', () => {
   let server;
+  let result;
 
   beforeEach(() => {
     server = makeServer({ environment: 'test' });
+    result = renderHook(useCartStore).result;
   });
 
   afterEach(() => {
     server.shutdown();
+    act(() => result.current.actions.reset());
   });
 
   it('should return open equals false on initial state', () => {
@@ -26,7 +29,7 @@ describe('Cart Store', () => {
     expect(result.current.state.products).toHaveLength(0);
   });
 
-  it('should have add product in store', () => {
+  it('should add 2 products to the list', () => {
     const products = server.createList('product', 2);
 
     const { result } = renderHook(useCartStore);
