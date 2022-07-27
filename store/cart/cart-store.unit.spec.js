@@ -4,11 +4,16 @@ import { makeServer } from '../../miragejs/server';
 
 describe('Cart Store', () => {
   let server;
+
   let result;
+  let add;
+  let toggle;
 
   beforeEach(() => {
     server = makeServer({ environment: 'test' });
     result = renderHook(useCartStore).result;
+    add = result.current.actions.add;
+    toggle = result.current.actions.toggle;
   });
 
   afterEach(() => {
@@ -28,10 +33,6 @@ describe('Cart Store', () => {
   it('should add 2 products to the list', () => {
     const products = server.createList('product', 2);
 
-    const {
-      actions: { add },
-    } = result.current;
-
     for (const product of products) {
       act(() => add(product));
     }
@@ -40,10 +41,6 @@ describe('Cart Store', () => {
   });
 
   it('should toggle open', () => {
-    const {
-      actions: { toggle },
-    } = result.current;
-
     expect(result.current.state.open).toBe(false);
 
     act(() => toggle());
