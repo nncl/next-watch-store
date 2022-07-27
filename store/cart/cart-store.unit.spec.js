@@ -17,14 +17,10 @@ describe('Cart Store', () => {
   });
 
   it('should return open equals false on initial state', () => {
-    const { result } = renderHook(useCartStore);
-
     expect(result.current.state.open).toBe(false);
   });
 
   it('should have an empty array when store is initialized', () => {
-    const { result } = renderHook(useCartStore);
-
     expect(Array.isArray(result.current.state.products)).toBe(true);
     expect(result.current.state.products).toHaveLength(0);
   });
@@ -32,7 +28,6 @@ describe('Cart Store', () => {
   it('should add 2 products to the list', () => {
     const products = server.createList('product', 2);
 
-    const { result } = renderHook(useCartStore);
     const {
       actions: { add },
     } = result.current;
@@ -45,7 +40,6 @@ describe('Cart Store', () => {
   });
 
   it('should toggle open', () => {
-    const { result } = renderHook(useCartStore);
     const {
       actions: { toggle },
     } = result.current;
