@@ -42,11 +42,13 @@ describe('Cart Store', () => {
 
   it('should toggle open', () => {
     expect(result.current.state.open).toBe(false);
+    expect(result.current.state.products).toHaveLength(0);
 
     act(() => toggle());
     expect(result.current.state.open).toBe(true);
 
     act(() => toggle());
     expect(result.current.state.open).toBe(false);
+    expect(result.current.state.products).toHaveLength(0);
   });
 });
