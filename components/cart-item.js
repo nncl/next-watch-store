@@ -1,7 +1,9 @@
 import Image from 'next/image';
 import { useState } from 'react';
+import { useCartStore } from '../store/cart';
 
 export default function CartItem({ product }) {
+  const { remove } = useCartStore((store) => store.actions);
   const [quantity, setQuantity] = useState(1);
 
   const increase = () => setQuantity(quantity + 1);
@@ -24,6 +26,7 @@ export default function CartItem({ product }) {
         )}
         <div className="mx-3">
           <h3 className="text-sm text-gray-600">{product.title}</h3>
+          <button onClick={() => remove(product)}>Remove</button>
           <div className="flex items-center mt-2">
             <button
               onClick={() => decrease()}
