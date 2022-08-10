@@ -17,16 +17,30 @@ export const useCartStore = create((set) => {
           state.open = !state.open;
         });
       },
-      reset() {
-        setState((store) => {
-          store.state = initialState;
-        });
-      },
       add(product) {
         setState(({ state }) => {
           if (!state.products.includes(product)) {
             state.products.push(product);
           }
+        });
+      },
+      remove(product) {
+        setState(({ state }) => {
+          const exists = !!state.products.find(({ id }) => id === product.id);
+
+          if (exists) {
+            state.products = state.products.filter(({ id }) => id !== product.id);
+          }
+        });
+      },
+      clear() {
+        setState(({ state }) => {
+          state.products = [];
+        });
+      },
+      reset() {
+        setState((store) => {
+          store.state = initialState;
         });
       },
     },
