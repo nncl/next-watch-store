@@ -37,7 +37,7 @@ export const useCartStore = create((set) => {
           }
         });
       },
-      clear() {
+      removeAll() {
         setState(({ state }) => {
           state.products = [];
         });
