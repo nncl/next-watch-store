@@ -42,6 +42,7 @@ describe('Cart Store', () => {
     }
 
     expect(result.current.state.products).toHaveLength(2);
+    expect(result.current.state.open).toEqual(true);
   });
 
   it('should not add the same product twice', () => {
