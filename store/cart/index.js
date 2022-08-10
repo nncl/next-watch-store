@@ -19,9 +19,9 @@ export const useCartStore = create((set) => {
       },
       add(product) {
         setState(({ state }) => {
-          const exists = !!state.products.find(({ id }) => id === product.id);
+          const doesntExist = !state.products.find(({ id }) => id === product.id);
 
-          if (!exists) {
+          if (doesntExist) {
             state.products.push(product);
           }
 
