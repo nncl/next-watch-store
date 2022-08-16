@@ -1,5 +1,10 @@
 import { fireEvent, render, screen } from '@testing-library/react';
 import CartItem from './cart-item';
+import { renderHook } from '@testing-library/react-hooks';
+import { useCartStore } from '../store/cart';
+import { setAutoFreeze } from 'immer';
+
+setAutoFreeze(false);
 
 const product = {
   title: 'Cool watch',
@@ -70,5 +75,17 @@ describe('CartItem', () => {
     fireEvent.click(buttonDecrease);
     fireEvent.click(buttonDecrease);
     expect(quantity.textContent).toBe('0');
+  });
+
+  it('should call remove when pressing its button', () => {
+    const result = renderHook(() => useCartStore()).result;
+    const spy = jest.spyOn(result.current.actions, 'remove');
+    renderCartItem();
+
+    const button = screen.getByRole('button', { name: /remove/i });
+    fireEvent.click(button);
+
+    expect(spy).toBeCalledTimes(1);
+    expect(spy).toBeCalledWith(product);
   });
 });
