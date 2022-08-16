@@ -1,5 +1,5 @@
 import { renderHook } from '@testing-library/react-hooks';
-import { act, render, screen } from '@testing-library/react';
+import { act, fireEvent, render, screen } from '@testing-library/react';
 import { setAutoFreeze } from 'immer';
 import { makeServer } from '../miragejs/server';
 import { useCartStore } from '../store/cart';
@@ -43,7 +43,8 @@ describe('Cart', () => {
   it('should NOT have class "hidden" in the component', () => {
     render(<Cart />);
 
-    act(() => toggle());
+    const button = screen.getByTestId('close-button');
+    fireEvent.click(button);
 
     expect(screen.getByTestId('cart')).not.toHaveClass('hidden');
   });
