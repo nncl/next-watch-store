@@ -22,10 +22,32 @@ export const useCartStore = create((set) => {
           const doesntExist = !state.products.find(({ id }) => id === product.id);
 
           if (doesntExist) {
+            if (!product.quantity) {
+              product.quantity = 1;
+            }
+
             state.products.push(product);
           }
 
           state.open = true;
+        });
+      },
+      increase(product) {
+        setState(({ state }) => {
+          const localProduct = state.products.find(({ id }) => id === product.id);
+
+          if (localProduct) {
+            localProduct.quantity++;
+          }
+        });
+      },
+      decrease(product) {
+        setState(({ state }) => {
+          const localProduct = state.products.find(({ id }) => id === product.id);
+
+          if (localProduct && localProduct.quantity) {
+            localProduct.quantity--;
+          }
         });
       },
       remove(product) {
